@@ -1,0 +1,60 @@
+{# app/Resources/views/store/store_page.html.twig #}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <title>Tienda</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/x-icon" href="{{ asset('movie.ico') }}" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<script>
+    
+</script>
+<body>
+    <div class="panel panel-default">
+        <div class="panel-heading"><h3><img src="{{ asset('movie.ico') }}" class="img-circle" alt="imageMovie" width="40" height="40">Tienda:<small> ADMIN: Gestion de Usuarios </small></h3>
+        </div>
+        <div class="panel-body">
+            <div id="sidebar">
+                {% block sidebar %}
+                    <ul>
+                        <a href="/store/user/register" class="btn btn-primary" role="button">+ Agregar Usuario</a>
+                    </ul>
+                {% endblock %}
+            </div>
+            {#Pintando la tabla#}
+            <div class="table-responsive">
+                <table class="table table-striped table-bordered">
+                    <p align="center">USUARIOS</p>
+                    <tr>
+                        <th>NOMBRE</th>
+                        <th>APELLIDO</th>
+                        <th>CEDULA</th>
+                        <th>USERNAME</th>
+                        <th>ACCION</th>
+                    </tr>
+                    <tr>
+                    {%for user in users%}
+                        <td>{{user.nombreUsuario}}</td>
+                        <td>{{user.apellidoUsuario}}</td>
+                        <td>{{user.cedula}}</td>
+                        <td>{{user.username}}</td>
+                        <td>
+                            <a href="/store/user/update/{{user.id}}" class="btn btn-info" role="button">Editar</a>
+                            <a href="/store/user/delete/{{user.id}}" class="btn btn-danger" role="button">Eliminar</a> 
+                        </td>
+                    </tr>
+                    {%endfor%}
+                </table>
+            </div>
+                &nbsp;&nbsp;&nbsp;&nbsp;<a href="/store" class="btn btn-link" role="button"> << Atras</a>
+        </div>
+               
+            
+    </div>
+<br>
+</body>
+</html>
